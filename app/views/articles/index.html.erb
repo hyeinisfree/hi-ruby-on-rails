@@ -1,4 +1,6 @@
-<h1>Hello, Rails!</h1>
+<h1>Articles</h1>
+
+Our blog has <%= Article.public_count %> articles and counting!
 
 <ul>
   <% @articles.each do |article| %>
@@ -15,9 +17,11 @@
 <!--      </a>-->
 <!--    </li>-->
 <!--    방법3(더 개선됨)-->
-    <li>
-      <%= link_to article.title, article %>
-    </li>
+    <% unless article.archived? %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+    <% end %>
   <% end %>
 
   <%= link_to "New Article", new_article_path %>
